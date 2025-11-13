@@ -1,0 +1,86 @@
+.price-title {
+    color: rgb(230, 67, 67);
+}
+
+/* 1. Default Button Style (For Free & Enterprise) */
+.price-btn {
+  /* This is the light pink background for Free and Enterprise buttons */
+  background-color:   rgba(255, 237, 237, 1) !important;
+  color: black !important;
+  border-color: rgba(255, 237, 237, 1) !important;
+
+}
+.badge-price{
+    background-color: rgb(236, 35, 35, 1) !important;
+}
+
+/* 2. Premium Button Style (Red background) */
+.premium-btn {
+  background-color: rgba(236, 35, 35, 1) !important; /* Red */
+  color: white !important;
+  border-color: rgba(236, 35, 35, 1) !important;
+}
+
+/* 3. Card Base Styling */
+.price-content-box {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    border-radius: 16px;
+    position: relative; 
+    overflow: hidden; 
+    padding-top: 30px;
+    margin-right: 30px;
+    height: 100%; /* توحيد ارتفاع البطاقات */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 4. Common Pseudo-element Properties */
+.price-content-box::before,
+.price-content-box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1; 
+}
+
+/* 5. ::before for Free and Enterprise Cards (Light Pink Curved Top) */
+.price-content-box:not(.premium-card)::before {
+    height: 200px;
+    background-image: url('/src/assets/img/Intersect\ \(2\).png') !important;
+    background-size: 100% 100%; /* تمديد الصورة لتأخذ العرض والارتفاع الكامل */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 6. ::after for Premium Card (Red Full Top) */
+.premium-card::after {
+    height: 200px;
+    background-image: url('/src/assets/img/Intersect\ \(1\).png') !important;
+    background-size: 100% 100%; /* تمديد الصورة لتأخذ العرض والارتفاع الكامل */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 7. Positioning Card Title/Subtitle inside the top area */
+.price-content-box .card-title {
+    position: relative;
+    z-index: 2;
+    font-size: 2rem !important; /* تكبير خط العنوان */
+    font-weight: bold;
+}
+
+.price-content-box .card-subtitle {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* 8. Price styling */
+.price-amount {
+    font-size: 2.5rem !important; /* تكبير خط السعر */
+    font-weight: bold;
+}

@@ -1,0 +1,47 @@
+
+.slick-prev,
+.slick-next {
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: rgba(236, 35, 35, 1) !important;
+  font-size: 35px !important;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  opacity: 1;
+}
+
+.group-termbi{
+    height: 25px; 
+    margin-left: 10px;
+}
+
+.logo-image {
+    width: 110px !important;
+    height: 110px !important;
+    object-fit: contain;
+   
+}
+
+.card:hover { 
+    transform: translateY(-5px); 
+}
+
+@media (max-width: 768px) {
+  .slick-prev {
+    left: -40px;
+  }
+  
+  .slick-next {
+    right: -40px;
+  }
+}

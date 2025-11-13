@@ -1,0 +1,17 @@
+.group-termbi{
+    margin-right: 10px;
+    height: 25px;
+}
+.dashboard-img {
+  width: 80%;          /* صغّر الصورة */
+  max-width: 500px;    /* حط حد أقصى */
+  transition: 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .dashboard-img {
+    width: 90%;        
+    margin-top: 1rem;
+  }
+}
+

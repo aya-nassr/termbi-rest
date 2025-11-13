@@ -1,0 +1,53 @@
+/* 1. التغليف والمسافة الخارجية - لا تغيير هنا */
+.section-container-wrapper {
+    padding: 60px 0; /* زيادة المسافة لتناسب الدوائر الأكبر */
+    display: flex; 
+    justify-content: center; 
+}
+
+/* 2. مربع المحتوى الأبيض (النقطة المرجعية للدوائر) - لا تغيير هنا */
+.why-termbi-content-box {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    border-radius: 10px;
+    max-width: 950px; 
+    width: 90%; 
+    position: relative; 
+    overflow: hidden; }
+
+
+/* 3. الخصائص المشتركة للدوائر (قبل وبعد) - لا تغيير هنا */
+.why-termbi-content-box::before,
+.why-termbi-content-box::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%; 
+    opacity: 0.5; 
+    z-index: 1; 
+}
+
+.why-termbi-content-box::before {
+    width: 160px; 
+    height: 170px; 
+    background-color: rgba(255, 229, 229, 1); 
+    top: -20px; 
+    left: -20px;
+}
+
+.why-termbi-content-box::after {
+    width: 200px; 
+    height: 160px; 
+    background-color: rgba(242, 242, 242, 1); 
+
+    bottom: -20px; 
+    right: -20px;
+}
+.termbi-image-in-title{
+    height: 0.9em;
+}
+
+
+
+.why-red {
+    color: rgba(236, 35, 35, 1);
+}
