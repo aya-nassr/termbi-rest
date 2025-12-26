@@ -1,0 +1,43 @@
+/* تنسيقات مكون خطوات الطلب */
+.order-breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.order-breadcrumb .breadcrumb-item {
+    font-weight: 500;
+    color: #6c757d;
+    cursor: default;
+    text-decoration: none;
+}
+
+.order-breadcrumb .breadcrumb-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.order-breadcrumb .breadcrumb-item.active {
+    color: #000000 !important;
+    font-weight: 600;
+}
+
+.order-breadcrumb .breadcrumb-item.active a {
+    color: #000000 !important;
+}
+
+.order-breadcrumb .breadcrumb-item.completed-step {
+    color: #28a745;
+    cursor: pointer;
+}
+
+.order-breadcrumb .breadcrumb-item.completed-step:hover {
+    color: #1e7e34;
+    text-decoration: none;
+}
+
+.order-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    color: #6c757d;
+    margin: 0 8px;
+}

@@ -19,9 +19,8 @@ function DashboardSection() {
         </Col>
       </Row>
 
-      {/* صف متجاوب */}
       <Row className="align-items-start flex-column-reverse flex-lg-row">
-        {/* العمود الأول: النص */}
+       
         <Col lg={5} md={6} xs={12} className="mb-4 text-center text-lg-start">
           <h2 className="fw-bold mb-4">Dashboard</h2>
           <p className="w-100 w-lg-75 py-5 mx-auto mx-lg-0">
@@ -35,7 +34,6 @@ function DashboardSection() {
           </p>
         </Col>
 
-        {/* العمود الثاني: الصورة */}
         <Col lg={7} md={6} xs={12} className="text-center mb-4 mb-lg-0">
           <img
             src={Dashbourd}

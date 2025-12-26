@@ -1,0 +1,111 @@
+/* Material UI Stepper customization */
+.MuiStepIcon-root {
+  color: #e9ecef !important;
+  font-size: 1.5rem !important;
+}
+
+.MuiStepIcon-root.Mui-active {
+  color: #dc3545 !important;
+}
+
+.MuiStepIcon-root.Mui-completed {
+  color: #00D091 !important;
+}
+
+.MuiStepLabel-label {
+  font-size: 0.875rem !important;
+  color: #6c757d !important;
+}
+
+.MuiStepLabel-label.Mui-active {
+  color: #dc3545 !important;
+  font-weight: 600 !important;
+}
+
+.MuiStepConnector-line {
+  border-color: #e9ecef !important;
+}
+
+.MuiStepConnector-root.Mui-active .MuiStepConnector-line,
+.MuiStepConnector-root.Mui-completed .MuiStepConnector-line {
+  border-color: #dc3545 !important;
+}
+
+/* Illustration */
+.illustration-container {
+  max-width: 600px;
+  width: 100%;
+}
+/* Custom Stepper Styles */
+.custom-stepper {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.stepper-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.step-circle.active {
+  background-color: #EC2323;
+  color: white;
+  border: 2px solid #EC2323;
+}
+
+.step-circle.completed {
+  background-color: #EC2323;
+  color: white;
+  border: 2px solid #EC2323;
+}
+
+.step-circle.final-completed {
+  background-color: #00D091;
+  color: white;
+  border: 2px solid #00D091;
+}
+
+.step-circle.inactive {
+  background-color: #CCCCCC;
+  color: white;
+  border: 2px solid #CCCCCC;
+}
+
+.step-line {
+  width: 60px;
+  height: 2px;
+  transition: all 0.3s ease;
+}
+
+.step-line.completed {
+  background-color: #EC2323;
+}
+
+.step-line.final-completed {
+  background-color: #00D091;
+}
+
+.step-line.inactive {
+  background-color: #CCCCCC;
+}

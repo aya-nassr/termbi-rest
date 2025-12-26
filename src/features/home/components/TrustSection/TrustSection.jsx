@@ -11,8 +11,15 @@ import LogoSbarro from '/src/assets/img/sbarro.png';
 import LogoApin from '/src/assets/img/apnia.png';
  import GroupIcon from '/src/assets/img/group.svg'; 
  import Image from 'react-bootstrap/Image';
+import { useNavigate } from 'react-router';
+import { appRoutes } from '../../../../routes';
 
 function ClientLogos() {
+  const navigate = useNavigate();
+  
+  const handleLogoClick = () => {
+    navigate(appRoutes.restaurantHome);
+  };
     
   const settings = {
     dots: false,
@@ -80,6 +87,8 @@ function ClientLogos() {
                          roundedCircle 
                          fluid
                          className="logo-image"
+                         onClick={handleLogoClick}
+                         style={{ cursor: 'pointer' }}
                        />
                      
                     </Card.Body>

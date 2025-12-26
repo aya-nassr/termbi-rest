@@ -11,7 +11,12 @@
 
 }
 .badge-price{
-    background-color: rgb(236, 35, 35, 1) !important;
+    background-color: transparent !important;
+    font-weight: normal !important;
+}
+
+.badge-dark-gray {
+    color: #3E3E3E !important;
 }
 
 /* 2. Premium Button Style (Red background) */
@@ -74,13 +79,8 @@
 
 .price-content-box .card-subtitle {
     position: relative;
-    z-index: 2;
-    font-weight: bold;
+    z-index: 3;
     font-size: 25px;
 }
 
-/* 8. Price styling */
-.price-amount {
-    font-size: 2.5rem !important; /* تكبير خط السعر */
-    font-weight: bold;
-}
+

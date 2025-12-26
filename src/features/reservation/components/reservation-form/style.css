@@ -1,0 +1,58 @@
+.form-label-fixed {
+  min-width: 120px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 0 !important;
+}
+
+.custom-input {
+  border-radius: 8px;
+  border: 1px solid #eee;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  background-color: #fcfcfc;
+  color: #555;
+}
+
+.custom-input::placeholder {
+  color: #ccc;
+}
+
+.custom-input:focus {
+  border-color: #dc3545;
+  box-shadow: none;
+  background-color: #fff;
+}
+
+.reserve-btn {
+  background-color: #9ca3af;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  width: 250px;
+  transition: background-color 0.3s;
+}
+
+.reserve-btn:hover {
+  background-color: #dc3545;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+.react-datepicker__input-container input {
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  background-color: #fcfcfc;
+  color: #555;
+  outline: none;
+}
+
+.react-datepicker__day--selected {
+  background-color: #dc3545 !important;
+}

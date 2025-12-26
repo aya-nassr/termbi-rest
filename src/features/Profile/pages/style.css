@@ -1,0 +1,22 @@
+.profile-page-wrapper {
+  background-color: #fcfcfc;
+  min-height: 100vh;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
+.profile-breadcrumbs {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+.profile-breadcrumbs a {
+  text-decoration: none;
+  color: #aaa;
+}
+.profile-breadcrumbs .separator {
+  margin: 0 10px;
+}
+.profile-breadcrumbs .active {
+  color: #333;
+  font-weight: 600;
+}

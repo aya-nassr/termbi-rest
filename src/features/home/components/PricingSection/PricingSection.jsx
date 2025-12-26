@@ -6,6 +6,27 @@ import CheckIcon from '/src/assets/img/check.svg';
 import Button from 'react-bootstrap/Button';
 
 function PricingSection() {
+    const pricingPlans = [
+        {
+            title: 'Free',
+            price: '$0',
+            features: ['Services', 'Services', 'Services', 'Services', 'Services'],
+            isPremium: false
+        },
+        {
+            title: 'Premium',
+            price: '$45',
+            features: ['Reservation', 'Ordering', 'Marketing', 'Services', 'Services'],
+            isPremium: true
+        },
+        {
+            title: 'Enterprise',
+            price: '$75',
+            features: ['Services', 'Services', 'Services', 'Services', 'Services'],
+            isPremium: false
+        }
+    ];
+
     return (
         <Container>
             <Row>
@@ -15,107 +36,32 @@ function PricingSection() {
                     </h2>
                 </Col>
             </Row>
-            <Row className='p-5 justify-content-center'> {/* Added justify-content-center for better spacing */}
-                {/* Free Card */}
-                <Col md={4} className="mb-4">
-                    <Card className="price-content-box"> {/* Removed inline style */}
-                        <Card.Body>
-                            <Card.Title className='fw-bold card-title mt-3'>Free</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
-                                $0 <Badge className='badge-price '>/month</Badge>
-                            </Card.Subtitle>
-                            <Card.Text className='py-5 mt-4'>
-                                <ul className="list-unstyled text-start small mb-5 mt-4">
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                </ul>
-                                <div className="d-flex justify-content-center">
-                                    <Button className='price-btn w-75'>Select Plan</Button>
+            <Row className='p-5 justify-content-center'>
+                {pricingPlans.map((plan, index) => (
+                    <Col md={4} className="mb-4" key={index}>
+                        <Card className={`price-content-box ${plan.isPremium ? 'premium-card' : ''}`}>
+                            <Card.Body>
+                                <Card.Title className='fw-bold card-title mt-3'>{plan.title}</Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">
+                                    {plan.price} <Badge  className={`badge-price ${plan.isPremium ? 'text-white' : 'badge-dark-gray'}`}>/month</Badge>
+                                </Card.Subtitle>
+                                <div className='py-5 mt-4'>
+                                    <ul className="list-unstyled text-start small mb-5 mt-4">
+                                        {plan.features.map((feature, featureIndex) => (
+                                            <li className="mb-3" key={featureIndex}>
+                                                <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <div className="d-flex justify-content-center">
+                                        <Button className={`price-btn ${plan.isPremium ? 'premium-btn' : ''} w-75`}>Select Plan</Button>
+                                    </div>
                                 </div>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-
-                {/* Premium Card (The Red One) */}
-                <Col md={4} className="mb-4 ">
-                    <Card className="price-content-box premium-card"> {/* Added 'premium-card' class */}
-                        <Card.Body>
-                            <Card.Title className='fw-bold card-title mt-3'>Premium</Card.Title>
-                            <Card.Subtitle className=" text-muted">
-                                $45 <Badge bg="light" text="dark">/month</Badge>
-                            </Card.Subtitle>
-                            <Card.Text className='py-5 mt-4'>
-                                <ul className="list-unstyled text-start mb-5 small mt-4">
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Reservation</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Ordering</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Marketing</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                </ul>
-                                <div className="d-flex justify-content-center">
-                                    <Button className='price-btn premium-btn w-75'>Select Plan</Button>
-                                </div>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-
-                <Col md={4} className="mb-4">
-                    <Card className="price-content-box"> 
-                        <Card.Body >
-                            <Card.Title className='fw-bold card-title mt-3'>Enterprise</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
-                                $75 <Badge bg="light" text="dark">/month</Badge>
-                            </Card.Subtitle>
-                            <Card.Text className='py-5 mt-4'>
-                                <ul className="list-unstyled text-start mb-5 small mt-4">
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                    <li className="mb-3">
-                                        <img src={CheckIcon} alt="Checkmark" className="custom-check-icon me-2" />
-                                        Services</li>
-                                </ul>
-                                <div className="d-flex justify-content-center">
-                                    <Button className='price-btn w-75'>Select Plan</Button>
-                                </div>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
             </Row>
         </Container>
     )

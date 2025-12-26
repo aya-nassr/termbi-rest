@@ -1,86 +1,134 @@
 import React from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
-// استيراد أيقونات Font Awesome من مكتبة react-icons/fa
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
+import './style.css';
+import logo from '/src/assets/img/logo.png';
+import { FaFacebookF, FaInstagram, FaXTwitter } from 'react-icons/fa6';
+import { useIsLoggedIn } from '../../features/auth/hooks/is-logged-in'; 
 
-// افتراض أن مسار الشعار موجود في هذا المكان
-import Logo from '/src/assets/img/logo.png';
-
-
-function FooterSection() {
+function Footer() {
+    const { isLoggedIn } = useIsLoggedIn();
+    
     return (
-        // استخدام عنصر <footer> مع كلاسات Bootstrap مباشرة
-        <footer className="bg-dark py-5 text-white">
+       
+        <footer className="text-white footer-main-bg"> 
             <Container>
-                {/* صف الأعمدة الرئيسي */}
-                <Row 
-                    // تضبط عدد الأعمدة حسب الشاشة: 1 (xs), 2 (md), 5 (lg)
-                    // ملاحظة: لا يوجد خاصية row-cols مباشرة في React-Bootstrap، لكن يمكن تحقيقها عبر cols
-                    // سأستخدم التوزيع المخصص بدلاً من row-cols-lg-5
-                    className="g-4 text-center text-lg-center"
-                >
-                    {/* 1. عمود الشعار والنص والروابط الاجتماعية (سيأخذ مساحة أكبر) */}
-                    <Col lg={4} md={6} xs={12}>
-                        {/* استخدام مكون Image */}
-                        <Image 
-                            src={Logo} 
-                            alt="logo" 
-                            className="mb-4" 
-                            style={{ maxWidth: '150px' }} 
-                        />
-                        
+
+                <Row className="py-4 g-4">
+                  <Col lg={3} md={6} xs={12} className="text-center text-lg-start">
+    <div className="logo-container">
+        <a href="#" className="logo-link d-inline-block">
+            <Image 
+                src={logo} 
+                alt="Termbi Logo" 
+                className="logo-image"
+            />
+        </a>
+    </div>
+    {isLoggedIn && (
+        <>
+            <h6 className="fw-bold py-3">Keep in touch</h6>
+            <div className="footer-link mb-4">
+                <a href="#" className="text-white me-3 ">
+                                <FaFacebookF size="1.2em" />
+                            </a>
+                            <a href="#" className="text-white me-3 ">
+                                <FaInstagram size="1.2em" />
+                            </a>
+                            <a href="#" className="text-white ">
+                                <FaXTwitter size="1.2em" />
+                            </a>
+            </div>
+            <div className="text-white opacity-75">
+                <p className="mb-1 fw-bold">Provided by <span className="text-danger">termbi</span></p>
+                <small>www.termbi.com</small>
+            </div>
+        </>
+    )}
+</Col>
+
+                    <Col lg={3} md={6} xs={12} className="text-center text-lg-start">
+                        {isLoggedIn ? (
+                            <>
+                                <h6 className="fw-bold mb-3">Opening Hours</h6>
+                                <div className="text-white ">
+                                    <div className="mb-2">
+                                        <span className="d-block">→ 08 AM TO 12 AM</span>
+                                        <small className="text-uppercase">MONDAY TO FRIDAY</small>
+                                    </div>
+                                    <div>
+                                        <span className="d-block">→ 11 AM TO 10 PM</span>
+                                        <small className="text-uppercase">SATURDAY & SUNDAY</small>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <h6 className="fw-bold mb-3">Features</h6>
+                                <ul className="list-unstyled">
+                                    <li><a href="#" className="text-white text-decoration-none py-1 d-block ">Get Website</a></li>
+                                    <li><a href="#" className="text-white text-decoration-none py-1 d-block ">Reservation</a></li>
+                                    <li><a href="#" className="text-white text-decoration-none py-1 d-block ">Ordering</a></li>
+                                    <li><a href="#" className="text-white text-decoration-none py-1 d-block ">Marketing</a></li>
+                                </ul>
+                            </>
+                        )}
                     </Col>
 
-                    {/* 2. عمود الخدمة */}
-                    <Col lg={2} md={6} xs={12}>
-                        <h6 className="fw-bold mb-3">Service</h6>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">Domain</a>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">Shared Hosting</a>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">Cloud Hosting</a>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">Private Hosting</a>
+                    <Col lg={3} md={6} xs={12} className="text-center text-lg-start">
+                        <h6 className="fw-bold mb-3">Quick Link</h6>
+                        <ul className="list-unstyled">
+                            <li><a href="#" className="text-white text-decoration-none py-1 d-block ">Home</a></li>
+                            <li><a href="#" className="text-white text-decoration-none py-1 d-block ">Services</a></li>
+                            <li><a href="#" className="text-white text-decoration-none py-1 d-block ">About us</a></li>
+                            <li><a href="#" className="text-white text-decoration-none py-1 d-block ">Contact us</a></li>
+                        </ul>
                     </Col>
 
-                    {/* 3. عمود الاستضافة */}
-                    <Col lg={2} md={4} xs={12}>
-                        <h6 className="fw-bold mb-3">Hosting</h6>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">Cheap Hosting</a>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">WordPress Hosting</a>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">Email Hosting</a>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">Unlimited Hosting</a>
+                    <Col lg={3} md={6} xs={12} className="text-center text-lg-start">
+                        <h6 className="fw-bold mb-3">Newsletters</h6>
+                        <p className="text-white  mb-3 footer-text-small">
+                            Stay up to date with our latest news, receive exclusive deals, and more
+                        </p>
+                        <Form>
+                            <Form.Control
+                                className='mb-3 ' 
+                                type="email" 
+                                placeholder="Enter your email address"
+                            />
+                            <Button
+                                className='subscribe-btn w-75 fw-bold' 
+                            >
+                                Subscribe
+                            </Button>
+                        </Form>
                     </Col>
-
-                    
-                    {/* 5. عمود المساعدة */}
-                    <Col lg={2} md={4} xs={12}>
-                        <h6 className="fw-bold mb-3">Help</h6>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">FAQ</a>
-                        <a href="#" className="d-block text-white text-decoration-none py-1">Help Support</a>
-                    </Col>
-                
-                {/* ملاحظة: المجموع الكلي لأعمدة lg هو 4+2+2+2+2 = 12، لتحقيق تقسيم row-cols-lg-5 تقريباً */}
                 </Row>
-                <Row>
-                     {/* فقرة حقوق النشر */}
-                <p className="text-center text-lg-start my-3 pt-3 border-top border-white border-opacity-25">
-                    Copyright 2025 All rights reserved
-               
-                
-                            <a href="#" className="me-3 text-white">
-                                <FaFacebookF size="1.2em" /> {/* أيقونة فيسبوك */}
-                            </a>
-                            <a href="#" className="me-3 text-white">
-                                <FaInstagram size="1.2em" /> {/* أيقونة إنستغرام */}
-                            </a>
-                            <a href="#" className="text-white">
-                                <FaTwitter size="1.2em" /> {/* أيقونة تويتر (X) */}
-                            </a>
-                             </p>
-
-                </Row>
-               
             </Container>
+
+            <div className="footer-bottom py-3 border-top border-secondary">
+                <Container>
+                    <Row className="align-items-center g-0">
+                        <Col md={6} className="text-center text-md-start">
+                            <p className="mb-0 opacity-75">
+                                Copyright @ 2024 | termbi
+                            </p>
+                        </Col>
+                        <Col md={6} className="text-center text-md-end">
+                            <a href="#" className="text-white me-3 ">
+                                <FaFacebookF size="1.2em" />
+                            </a>
+                            <a href="#" className="text-white me-3 ">
+                                <FaInstagram size="1.2em" />
+                            </a>
+                            <a href="#" className="text-white ">
+                                <FaXTwitter size="1.2em" />
+                            </a>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         </footer>
     );
 }
 
-export default FooterSection;
+export default Footer;

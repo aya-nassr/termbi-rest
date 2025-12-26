@@ -1,0 +1,116 @@
+.auth-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.customer-btn {
+  background: linear-gradient(135deg, #e53e3e, #c53030);
+  border: 1px solid #e53e3e !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(229, 62, 62, 0.3);
+}
+
+.customer-btn:hover {
+  background: linear-gradient(135deg, #c53030, #9c2626);
+  border: 1px solid #c53030 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(229, 62, 62, 0.4);
+}
+
+.customer-btn:focus {
+  border: 1px solid #e53e3e !important;
+  box-shadow: 0 0 0 0.2rem rgba(229, 62, 62, 0.25) !important;
+}
+
+.customer-dropdown-menu {
+  border: 1px solid rgba(229, 62, 62, 0.2);
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
+  border-radius: 8px;
+  min-width: 180px;
+}
+
+.customer-dropdown-item {
+  color: #495057;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.customer-dropdown-item:hover {
+  background-color: rgba(229, 62, 62, 0.1);
+  color: #e53e3e;
+}
+
+.admin-btn {
+  border-color: rgba(108, 117, 125, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.admin-btn:hover {
+  background-color: rgba(108, 117, 125, 0.1);
+  border-color: #6c757d;
+  color: #fff;
+}
+
+.admin-dropdown-menu {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #343a40;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.admin-dropdown-item {
+  color: #fff;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.admin-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.dropdown-header {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1rem 0.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-buttons-container {
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+  }
+  
+  .customer-btn,
+  .admin-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .customer-btn,
+  .admin-btn {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+  
+  .customer-btn svg,
+  .admin-btn svg {
+    display: none;
+  }
+}

@@ -1,0 +1,4 @@
+@import '../sign-up-form/style.css';
+.form{
+    max-width: 400px;
+}

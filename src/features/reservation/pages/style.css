@@ -1,0 +1,35 @@
+.reserve-page-wrapper {
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+}
+
+.page-title {
+  font-weight: 700;
+  color: #333;
+}
+
+.reserve-btn {
+  background-color: #e0e0e0 !important;
+  color: #888 !important;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  width: 250px;
+  transition: all 0.3s ease;
+  cursor: not-allowed;
+}
+
+.reserve-btn.active {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+}
+
+.reserve-btn.active:hover {
+  background-color: #bb2d3b !important;
+  transform: translateY(-2px);
+}

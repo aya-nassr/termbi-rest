@@ -1,0 +1,31 @@
+
+.footer-main-bg {
+    background-color: #272727;
+}
+
+.subscribe-btn {
+    background-color: #EC2323 !important; 
+    border-color: #EC2323 !important;    
+}
+.subscribe-btn:hover {
+   background-color: rgb(22, 22, 22) !important; 
+   border-color: rgb(22, 22, 22) !important;
+}
+
+.footer-bottom { 
+    background-color: #171717;
+}
+
+.footer-bottom a:hover {
+    color: #EC2323 !important; 
+}
+
+.list-unstyled a:hover {
+  
+    color: #EC2323 !important; 
+}
+
+.footer-link a:hover {
+    color: #EC2323 !important; 
+}
+
