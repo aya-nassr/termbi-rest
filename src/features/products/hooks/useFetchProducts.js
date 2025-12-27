@@ -8,8 +8,8 @@ import ProductsService from '../services/api';
 import { useProductsState } from '../store';
 
 export function useFetchProducts() {
-    // حالة للتحميل وحالة للأخطاء
-    const [isLoading, setIsLoading] = useState(false);
+    // حالة للتحميل وحالة 
+  const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     
     // 👈 الحصول على الدالة setProducts لتحديث Zustand
@@ -29,13 +29,13 @@ export function useFetchProducts() {
             
             try {
                 // 2. جلب البيانات من الـ Service (الذي يتصل بـ json-server)
-                const data = await ProductsService.getAll(); 
+                const data = await ProductsService.getAllProducts({});
                 
                 // 3. تخزين البيانات الجديدة في Zustand
                 setProducts(data); 
 
             } catch (err) {
-                // 4. إدارة الأخطاء (سيتم التعامل معها أيضاً في interceptors الـ axios)
+               
                 setError(err);
                 // هنا يمكنك إضافة رسالة توست مخصصة إذا لزم الأمر
             } finally {
@@ -46,8 +46,6 @@ export function useFetchProducts() {
         fetchAndStoreProducts(); 
         
     }, [setProducts, products.length]); 
-    // الاعتماد على setProducts و products.length لضمان التنفيذ الصحيح عند التغيير
 
-    // إرجاع حالة التحميل والأخطاء للمكون الذي سيستخدم هذا الـ Hook
     return { isLoading, error };
 }

@@ -11,13 +11,14 @@ export const useCartState = create(
       fetchCart: async () => {
         set({ isLoading: true });
         try {
-          const data = await CartService.getAll();
+          const data = await CartService.getAllProductsInCart();
           // تحويل بنية البيانات من السيرفر لتتوافق مع التطبيق
           const formattedItems = data.map(cartItem => ({
             ...cartItem.product,
             cartId: cartItem.id,
             quantity: cartItem.quantity,
-            cartQuantity: cartItem.quantity
+            cartQuantity: cartItem.quantity,
+            isSelected: true
           }));
           set({ items: formattedItems, isLoading: false });
         } catch (error) {
@@ -28,11 +29,19 @@ export const useCartState = create(
       
      addToCart: async (product) => {
         try {
-          // إرسال للسيرفر أولاً
-          const response = await CartService.addToCart({
+          console.log('Product being added to cart:', product);
+          
+          const payload = {
             product_id: product.id,
             quantity: 1
-          });
+          };
+          
+          console.log('Payload being sent:', payload);
+          
+          // إرسال للسيرفر أولاً
+          const response = await CartService.addProductToCart(payload);
+          
+          console.log('Server response:', response);
           
           // بعد نجاح السيرفر، نحدث الحالة المحلية
           const { items } = get();
@@ -48,11 +57,12 @@ export const useCartState = create(
             });
           } else {
             set({
-              items: [...items, { ...product, quantity: 1 }]
+              items: [...items, { ...product, quantity: 1, isSelected: true }]
             });
           }
         } catch (error) {
           console.error('Add to cart failed:', error);
+          console.error('Error details:', error.response?.data);
           throw error;
         }
       },
@@ -63,7 +73,7 @@ export const useCartState = create(
           const item = get().items.find(item => item.id === cartId);
           const actualCartId = item?.cartId || cartId;
           
-          await CartService.removeItem(actualCartId);
+          await CartService.deleteCartItem(actualCartId);
           set({
             items: get().items.filter(item => item.id !== cartId)
           });
@@ -93,6 +103,7 @@ export const useCartState = create(
       
       getTotalPrice: () => {
         return get().items.reduce((total, item) => {
+          if (!item.isSelected) return total;
           const price = parseFloat(item.price) || 0;
           const quantity = item.quantity || item.cartQuantity || 1;
           return total + (price * quantity);
@@ -101,9 +112,20 @@ export const useCartState = create(
       
       getTotalItems: () => {
         return get().items.reduce((total, item) => {
+          if (!item.isSelected) return total;
           const quantity = item.quantity || item.cartQuantity || 1;
           return total + quantity;
         }, 0);
+      },
+      
+      toggleItemSelection: (productId, isSelected) => {
+        set({
+          items: get().items.map(item =>
+            item.id === productId
+              ? { ...item, isSelected }
+              : item
+          )
+        });
       }
     }),
     {

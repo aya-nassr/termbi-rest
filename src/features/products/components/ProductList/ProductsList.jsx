@@ -4,6 +4,7 @@ import { CartPlus } from 'react-bootstrap-icons';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductModal from '../ProductModal/ProductModal';
 import { useFetchProducts } from '../../hooks/useFetchProducts'; 
+import { useFetchCategories } from '../../hooks/useFetchCategories';
 import { useProductsState } from '../../store';
 import { useCartState } from '../../../Order/Cart/store';
 import toast from 'react-hot-toast';
@@ -16,7 +17,9 @@ function ProductList({ title = "Products", description = "Explore our delicious 
     const [selectedProduct, setSelectedProduct] = useState(null);
     
     const { isLoading, error } = useFetchProducts();
+    const { isLoading: categoriesLoading } = useFetchCategories();
     const products = useProductsState((state) => state.products);
+    const categories = useProductsState((state) => state.categories);
     const addToCart = useCartState((state) => state.addToCart);
 
     const handleAddToCart = async (item) => {
@@ -40,35 +43,29 @@ function ProductList({ title = "Products", description = "Explore our delicious 
         setSelectedProduct(null);
     };
 
-    // التصنيفات اليدوية
-    const categories = ['All', 'Pizza', 'Soup', 'Salad', 'Pasta', 'Seafood', 'Sandwiches', 'Burger', 'Juice'];
-    
+    // إنشاء قائمة التصنيفات مع "All"
+    const categoryOptions = useMemo(() => {
+        const allCategories = ['All'];
+        if (categories && categories.length > 0) {
+            categories.forEach(cat => {
+                if (cat.name) {
+                    allCategories.push(cat.name);
+                }
+            });
+        }
+        return allCategories;
+    }, [categories]);
+
+    // فلترة المنتجات بناءً على التصنيف المختار
     const filteredProducts = useMemo(() => {
         if (!products) return [];
         if (activeCategory === 'All') return products;
 
-        // خريطة لربط أسماء الأزرار بالـ IDs الحقيقية في قاعدة بياناتك
-        const categoryMap = {
-            'Pizza': 16,
-            'Salad': 14,
-            'Pasta': 12,
-            'Burger': 17,
-            'Juice': 18
-        };
-
-        const targetId = categoryMap[activeCategory];
-
         return products.filter(product => {
-            // التأكد من وجود product و product.name
-            if (!product || !product.name) return false;
-            
-            const productName = product.name.toLowerCase();
-            
-            // إذا وجدنا ID مطابق نفلتر به، وإلا نبحث بالاسم (للحالات مثل Soup)
-            if (targetId && product.category_id === targetId) return true;
-            return productName.includes(activeCategory.toLowerCase());
+            const category = categories.find(cat => cat.id === product.category_id);
+            return category?.name === activeCategory;
         });
-    }, [products, activeCategory]);
+    }, [products, activeCategory, categories]);
 
     const menuItems = useMemo(() => {
         const items = [...filteredProducts];
@@ -81,7 +78,7 @@ function ProductList({ title = "Products", description = "Explore our delicious 
         return items;
     }, [filteredProducts, sortBy]);
 
-    if (isLoading) {
+    if (isLoading || categoriesLoading) {
         return (
             <Container className="text-center py-5">
                 <Spinner animation="border" variant="danger" />
@@ -94,7 +91,7 @@ function ProductList({ title = "Products", description = "Explore our delicious 
         return (
             <Container className="py-5">
                 <Alert variant="danger">
-                    Error loading products: {error}
+                   Error loading products: {error.message || "Something went wrong"}
                 </Alert>
             </Container>
         );
@@ -120,7 +117,7 @@ function ProductList({ title = "Products", description = "Explore our delicious 
                     {/* أزرار التصنيفات */}
                     <div className="d-flex justify-content-between align-items-center mb-4">
                         <Nav variant="pills" className="flex-grow-1 justify-content-center flex-wrap">
-                            {categories.map((category) => (
+                            {categoryOptions.map((category) => (
                                 <Nav.Item key={category}>
                                     <Nav.Link 
                                         active={activeCategory === category}

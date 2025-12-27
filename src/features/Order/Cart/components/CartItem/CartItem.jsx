@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { Dash, Plus, Trash } from 'react-bootstrap-icons';
@@ -6,8 +6,7 @@ import { useCartState } from '../../store';
 import './style.css'
 
 function CartItem({ item }) {
-  const { updateQuantity, removeFromCart } = useCartState();
-  const [isSelected, setIsSelected] = useState(true);
+  const { updateQuantity, removeFromCart, toggleItemSelection } = useCartState();
 
   const handleQuantityChange = (newQuantity) => {
     updateQuantity(item.id, newQuantity);
@@ -15,6 +14,10 @@ function CartItem({ item }) {
 
   const handleRemove = () => {
     removeFromCart(item.id);
+  };
+
+  const handleSelectionChange = (e) => {
+    toggleItemSelection(item.id, e.target.checked);
   };
 
   const discountPercentage = item.discount || 0;
@@ -35,17 +38,20 @@ function CartItem({ item }) {
           <Form.Check
             className="red-checkbox"
             type="checkbox"
-            checked={isSelected}
+            checked={item.isSelected || false}
             id={`cart-item-check-${item.id}`}
-            onChange={(e) => setIsSelected(e.target.checked)}
+            onChange={handleSelectionChange}
           />
         </div>
 
         <div className="cart me-3" >
           <img 
-            src={item.img} 
-            alt={item.title}
+            src={item.image || item.img || item.photo || '/default-product.jpg'} 
+            alt={item.name || item.title || 'Product'}
             className="img-fluid img-cart rounded-3"
+            onError={(e) => {
+              e.target.src = '/default-product.jpg';
+            }}
           />
         </div>
         

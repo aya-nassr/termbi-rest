@@ -1,7 +1,7 @@
 // src/features/profile/mock/orders-data.js
 
 // استيراد صور مؤقتة (يمكنك استخدام صورك)
-import food1 from '../../../assets/dashboard.jpg'; 
+import food1 from '../../../assets//img/dashboard.jpg'; 
 
 export const MOCK_ORDERS = [
   {

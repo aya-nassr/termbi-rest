@@ -38,7 +38,7 @@ export function ManageProfileForm() {
       <h4 className="section-title mb-4">Manage Profile</h4>
       <div className="d-flex align-items-center mb-5 profile-info-header">
         <img 
-          src={user?.image || '/default-avatar.png'} 
+          src={user?.image || '/src/assets/img/default-avatar.jpg'} 
           alt={user?.name || 'User'} 
           className="header-avatar" 
         />

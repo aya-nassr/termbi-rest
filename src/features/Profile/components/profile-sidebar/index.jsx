@@ -21,7 +21,7 @@ export function ProfileSidebar() {
     <div className="profile-sidebar d-flex flex-column">
       <div className="sidebar-header text-center">
         <img 
-          src={user?.image || '/default-avatar.png'} 
+          src={user?.image || '/src/assets/img/default-avatar.jpg'} 
           alt={user?.name || 'User'} 
           className="profile-avatar" 
         />

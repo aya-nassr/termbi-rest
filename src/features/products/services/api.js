@@ -1,45 +1,28 @@
-// src/features/products/services/api.js
+import { httpClient } from "../../../lib/axios";
 
-import { httpClient } from '../../../lib/axios';
-import { sleep } from '../../../shared/utilities/sleep';
+class ProductsServices {اً
 
-class ProductsService {
-    #endPoint = '/products'
+  async getAllProducts(params = {}) {
+   
+    const { sort = 'name', category_id = null } = params;
 
-    async getAll() {
-        await sleep(1000);
-        const response = await httpClient.get(this.#endPoint);
-        return response.data.data;
-    }
+    const response = await httpClient.get("/products", {
+      params: {
+        restaurant_admin_id: 8,
+        sort_term: "asc",
+        sort_by: sort,
+        category_id: category_id, // إذا كان null لن يؤثر على الطلب غالباً
+      },
+    });
 
-    async getById(id) {
-        await sleep(1000);
-     
-        const response = await httpClient.get(`${this.#endPoint}/${id}`); 
-        return response.data.data;
-    }
+    return response.data?.data;
+  }
 
-    async create(payload) {
-
-        const formData = new FormData();
-        Object.keys(payload).forEach(key => {
-            formData.append(key, payload[key]);
-        });
-        
-        const response = await httpClient.post(this.#endPoint, formData);
-        return response.data;
-    }
-
-    async update(id, payload) {
-        const response = await httpClient.put(`${this.#endPoint}/${id}`, payload);
-        return response.data
-    }
-
-    async delete(id) {
-        const response = await httpClient.delete(`${this.#endPoint}/${id}`);
-        return response.data
-    }
-
+ 
+  async getAllCategories() {
+    const response = await httpClient.get(`/categories?with_products=1&restaurant_admin_id=8&sort_term=desc&sort_by=name`);
+    return response.data?.data;
+  }
 }
 
-export default new ProductsService();
+export default new ProductsServices();
