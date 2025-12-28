@@ -9,6 +9,7 @@ import { useProductsState } from '../../store';
 import { useCartState } from '../../../Order/Cart/store';
 import toast from 'react-hot-toast';
 import Pagination from 'react-bootstrap/Pagination';
+import './style.css';
 
 function ProductList({ title = "Products", description = "Explore our delicious menu items!", showDownload = false }) {
     const [activeCategory, setActiveCategory] = useState('All');
@@ -16,6 +17,8 @@ function ProductList({ title = "Products", description = "Explore our delicious 
     const [sortBy, setSortBy] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
     
     const { isLoading, error } = useFetchProducts();
     const { isLoading: categoriesLoading } = useFetchCategories();
@@ -26,7 +29,6 @@ function ProductList({ title = "Products", description = "Explore our delicious 
     const handleAddToCart = async (item) => {
         try {
             await addToCart(item);
-            // تعديل: السيرفر يستخدم name وليس title
             toast.success(`${item.name || 'Product'} added to cart!`);
         } catch (error) {
             console.error('Failed to add to cart:', error);
@@ -44,7 +46,6 @@ function ProductList({ title = "Products", description = "Explore our delicious 
         setSelectedProduct(null);
     };
 
-    // إنشاء قائمة التصنيفات مع "All"
     const categoryOptions = useMemo(() => {
         const allCategories = ['All'];
         if (categories && categories.length > 0) {
@@ -57,7 +58,6 @@ function ProductList({ title = "Products", description = "Explore our delicious 
         return allCategories;
     }, [categories]);
 
-    // فلترة المنتجات بناءً على التصنيف المختار
     const filteredProducts = useMemo(() => {
         if (!products) return [];
         if (activeCategory === 'All') return products;
@@ -73,11 +73,23 @@ function ProductList({ title = "Products", description = "Explore our delicious 
         if (sortBy === 'price') {
             return items.sort((a, b) => a.price - b.price);
         } else if (sortBy === 'name') {
-            // تعديل: الترتيب حسب name
             return items.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
         }
         return items;
     }, [filteredProducts, sortBy]);
+
+    const totalPages = Math.ceil(menuItems.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentItems = menuItems.slice(startIndex, startIndex + itemsPerPage);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    useMemo(() => {
+        setCurrentPage(1);
+    }, [activeCategory, sortBy]);
 
     if (isLoading || categoriesLoading) {
         return (
@@ -177,52 +189,73 @@ function ProductList({ title = "Products", description = "Explore our delicious 
                     </div>
 
                     {menuItems && menuItems.length > 0 ? (
-                        viewMode === 'card' ? (
-                            <Row className='py-4'>
-                                {menuItems.map((item) => (
-                                    <Col md={6} lg={4} key={item.id} className="mb-4">
-                                        <ProductCard 
-                                            product={item} 
-                                            onAddToCart={handleAddToCart}
-                                            onCardClick={handleCardClick}
+                        <>
+                            {viewMode === 'card' ? (
+                                <Row className='py-4'>
+                                    {currentItems.map((item) => (
+                                        <Col md={6} lg={4} key={item.id} className="mb-4">
+                                            <ProductCard 
+                                                product={item} 
+                                                onAddToCart={handleAddToCart}
+                                                onCardClick={handleCardClick}
+                                            />
+                                        </Col>
+                                    ))}
+                                </Row>
+                            ) : (
+                                <div className="mb-5">
+                                    {currentItems.map((item) => (
+                                        <div key={item.id} className="d-flex justify-content-between align-items-center py-3 border-bottom">
+                                            <div>
+                                                <h6 className="mb-1 fw-bold text-dark">{item.name}</h6>
+                                                <p className="mb-0 text-muted small">{item.description}</p>
+                                            </div>
+                                            <div className="d-flex align-items-center">
+                                                <span className="text-danger fw-bold me-3">${item.price}</span>
+                                                <CartPlus className='cart-btn' size={24}  onClick={() => handleAddToCart(item)} />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                            
+                            {totalPages > 1 && (
+                                <div className="d-flex justify-content-center mt-4">
+                                    <Pagination className="custom-pagination">
+                                        <Pagination.First 
+                                            onClick={() => handlePageChange(1)}
+                                            disabled={currentPage === 1}
                                         />
-                                    </Col>
-                                ))}
-                            </Row>
-                        ) : (
-                            <div className="mb-5">
-                                {menuItems.map((item) => (
-                                    <div key={item.id} className="d-flex justify-content-between align-items-center py-3 border-bottom">
-                                        <div>
-                                            <h6 className="mb-1 fw-bold text-dark">{item.name}</h6>
-                                            <p className="mb-0 text-muted small">{item.description}</p>
-                                        </div>
-                                        <div className="d-flex align-items-center">
-                                            <span className="text-danger fw-bold me-3">${item.price}</span>
-                                            <CartPlus size={24} color="#dc3545" style={{ cursor: 'pointer' }} onClick={() => handleAddToCart(item)} />
-                                        </div>
-                                    </div>
-                                ))}
-                                <Pagination>
-      <Pagination.First />
-      <Pagination.Prev />
-      <Pagination.Item>{1}</Pagination.Item>
-      <Pagination.Ellipsis />
-
-      <Pagination.Item>{10}</Pagination.Item>
-      <Pagination.Item>{11}</Pagination.Item>
-      <Pagination.Item active>{12}</Pagination.Item>
-      <Pagination.Item>{13}</Pagination.Item>
-      <Pagination.Item disabled>{14}</Pagination.Item>
-
-      <Pagination.Ellipsis />
-      <Pagination.Item>{20}</Pagination.Item>
-      <Pagination.Next />
-      <Pagination.Last />
-    </Pagination>
-                            </div>
-
-                        )
+                                        <Pagination.Prev 
+                                            onClick={() => handlePageChange(currentPage - 1)}
+                                            disabled={currentPage === 1}
+                                        />
+                                        
+                                        {[...Array(totalPages)].map((_, index) => {
+                                            const page = index + 1;
+                                            return (
+                                                <Pagination.Item
+                                                    key={page}
+                                                    active={page === currentPage}
+                                                    onClick={() => handlePageChange(page)}
+                                                >
+                                                    {page}
+                                                </Pagination.Item>
+                                            );
+                                        })}
+                                        
+                                        <Pagination.Next 
+                                            onClick={() => handlePageChange(currentPage + 1)}
+                                            disabled={currentPage === totalPages}
+                                        />
+                                        <Pagination.Last 
+                                            onClick={() => handlePageChange(totalPages)}
+                                            disabled={currentPage === totalPages}
+                                        />
+                                    </Pagination>
+                                </div>
+                            )}
+                        </>
                     ) : (
                         <div className="text-center py-5">
                             <Alert variant="info">

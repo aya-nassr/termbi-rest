@@ -26,7 +26,7 @@ function ProductModal({ show, onHide, product, onAddToCart }) {
     const calculateTotalPrice = () => {
         const basePrice = product.price;
         const optionsPrice = Object.entries(selectedOptions)
-            .filter(([_, isSelected]) => isSelected)
+            .filter(([, isSelected]) => isSelected)
             .reduce((total, [optionName]) => {
                 const option = productOptions.find(opt => opt.name === optionName);
                 return total + (option ? option.price : 0);
@@ -54,11 +54,10 @@ function ProductModal({ show, onHide, product, onAddToCart }) {
             <Modal.Body className="p-0">
                 <Row className="g-0">
                     <Col md={6}>
-                        <img 
-                            src={product.img || product.image || `https://training.tamkeen-dev.com/termc/public/storage/${product.image_path}` || 'https://via.placeholder.com/400x400?text=No+Image'} 
+                        <img
+                            src={product.img || product.image || `https://training.tamkeen-dev.com/termc/public/storage/${product.image_path}` || 'https://via.placeholder.com/400x400?text=No+Image'}
                             alt={product.title || product.name || 'Product'}
-                            className="w-100 h-100"
-                            style={{ objectFit: 'cover', minHeight: '400px' }}
+                            className="product-img w-100 h-100"
                             onError={(e) => {
                                 e.target.src = 'https://via.placeholder.com/400x400?text=No+Image';
                             }}
@@ -70,14 +69,14 @@ function ProductModal({ show, onHide, product, onAddToCart }) {
                                 <h4 className="fw-bold text-dark mb-2">{product.title || product.name || 'Product Name'}</h4>
                                 <h5 className="text-danger fw-bold mb-3">{product.price} $</h5>
                                 <p className="text-muted mb-4">{product.description}</p>
-                                
+
                                 <div className="mb-4">
                                     <h6 className="fw-bold mb-3">Product Options</h6>
                                     <Dropdown show={showOptionsDropdown} onToggle={setShowOptionsDropdown}>
-                                        <Dropdown.Toggle 
-                                            variant="outline-secondary" 
+                                        <Dropdown.Toggle
+                                            variant="outline-secondary"
                                             className="w-100 text-start d-flex justify-content-between align-items-center"
-                                            style={{ backgroundColor: '#f8f9fa' }}
+
                                         >
                                             Choose Option
                                         </Dropdown.Toggle>
@@ -96,7 +95,7 @@ function ProductModal({ show, onHide, product, onAddToCart }) {
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </div>
-                                
+
                                 <div className="mb-4">
                                     <h6 className="fw-bold mb-2">Special Request</h6>
                                     <Form.Control
@@ -105,33 +104,33 @@ function ProductModal({ show, onHide, product, onAddToCart }) {
                                         placeholder="Tell us if you have: an allergy, an ingredient you don't like, etc."
                                         value={specialRequest}
                                         onChange={(e) => setSpecialRequest(e.target.value)}
-                                        style={{ backgroundColor: '#f8f9fa', border: '1px solid #dee2e6' }}
+
                                     />
                                 </div>
                             </div>
-                            
+
                             <div className="mt-auto">
                                 <div className="d-flex align-items-center gap-2">
-                                    <Button 
-                                        variant="outline-secondary" 
+                                    <Button
+                                        variant="outline-secondary"
                                         size="sm"
                                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                        style={{ width: '35px', height: '35px' }}
+
                                     >
                                         -
                                     </Button>
                                     <span className="fw-bold mx-2">{quantity}</span>
-                                    <Button 
-                                        variant="outline-secondary" 
+                                    <Button
+                                        variant="outline-secondary"
                                         size="sm"
                                         onClick={() => setQuantity(quantity + 1)}
-                                        style={{ width: '35px', height: '35px' }}
+
                                     >
                                         +
                                     </Button>
-                                    
-                                    <Button 
-                                        variant="danger" 
+
+                                    <Button
+                                        variant="danger"
                                         className="flex-grow-1 fw-bold ms-3"
                                         onClick={handleAddToCart}
                                     >
