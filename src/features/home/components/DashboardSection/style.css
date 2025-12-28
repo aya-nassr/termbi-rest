@@ -3,8 +3,8 @@
     height: 25px;
 }
 .dashboard-img {
-  width: 80%;          /* صغّر الصورة */
-  max-width: 500px;    /* حط حد أقصى */
+  width: 80%;          
+  max-width: 500px;    
   transition: 0.3s ease-in-out;
 }
 

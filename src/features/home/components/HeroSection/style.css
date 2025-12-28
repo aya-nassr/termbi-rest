@@ -3,6 +3,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; 
+    
 }
 button.btn-hero{
     height: 56px;
@@ -16,3 +17,5 @@ button.btn-hero{
 button.btn-hero:hover{
    background-color: rgb(22, 22, 22);
 }
+
+

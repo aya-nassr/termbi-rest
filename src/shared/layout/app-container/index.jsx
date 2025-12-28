@@ -8,7 +8,6 @@ export function AppContainer({ children }) {
     const { isLoading, isFetching } = useGetMeQuery()
     const token = userStorage.get();
 
-    // عرض الـ loader فقط إذا كان هناك token ويتم التحميل
     if (token && (isLoading || isFetching)) {
         return (
             <div >

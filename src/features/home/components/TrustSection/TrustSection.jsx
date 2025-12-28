@@ -24,7 +24,6 @@ function ClientLogos() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
@@ -72,11 +71,11 @@ function ClientLogos() {
     restaurants already trust in 
     <img 
         src={GroupIcon} 
-        alt="Group of companies icon" 
+        alt="companies icon" 
         className='group-termbi'
     />
 </h2>
-          <div className="position-relative mx-5">
+          <div className="mx-5">
             <Slider {...settings}>
               {logos.map((logo, index) => (
                 <div key={index} className="px-3">

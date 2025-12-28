@@ -7,16 +7,14 @@ import PricingSection from "../components/PricingSection/PricingSection";
 import DashboardSection from "../components/DashboardSection/DashboardSection";
 
 function Home() {
-
-
   return (
-    <main>
+    <>
       <HeroSection />
       <WhySection />
       <ClientLogos />
       <PricingSection />
       <DashboardSection />
-    </main>
+    </>
   );
 }
 
