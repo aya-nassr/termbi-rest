@@ -9,7 +9,7 @@ import LogoGoodTaste from '/src/assets/img/good.png';
 import LogoMeltyWay from '/src/assets/img/melty.png';
 import LogoSbarro from '/src/assets/img/sbarro.png'; 
 import LogoApin from '/src/assets/img/apnia.png';
- import GroupIcon from '/src/assets/img/group.svg'; 
+ import GroupIcon from '/src/assets/img/Group.svg'; 
  import Image from 'react-bootstrap/Image';
 import { useNavigate } from 'react-router';
 import { appRoutes } from '../../../../routes';

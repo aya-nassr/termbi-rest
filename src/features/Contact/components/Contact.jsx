@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Form, Image } from 'react-bootstrap';
 import './style.css';
-import Button from '/src/shared/components/form/Button';
+import Button from '/src/shared/components/Button/Button';
 import FormField from '/src/shared/components/form/FormField';
 import { useContactForm } from '../hooks/useContactForm';
 import PhoneIcon from '/src/assets/img/phone.svg'; 

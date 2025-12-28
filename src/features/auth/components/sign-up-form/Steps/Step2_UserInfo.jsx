@@ -4,7 +4,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import PhoneInput from '/src/shared/components/form/PhoneInput';
 import FormField from '/src/shared/components/form/FormField';
-import Button from '/src/shared/components/form/Button'; 
+import Button from '/src/shared/components/Button/Button'; 
 
 // 1. استقبال props الجديدة
 const Step2_UserInfo = ({ handleNextStep, DropdownImage, register, errors, getValues, setValue }) => {

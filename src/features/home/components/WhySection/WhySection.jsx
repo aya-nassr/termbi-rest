@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './style.css'; 
-import TermbiLogo from '/src/assets/img/group.svg';
+import TermbiLogo from '/src/assets/img/Group.svg';
 
 const WhyTermbiSection = () => {
   return (

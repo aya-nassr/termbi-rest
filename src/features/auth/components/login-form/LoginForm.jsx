@@ -4,7 +4,7 @@ import './style.css';
 import AuthSidebar from '/src/shared/components/AuthSidebar/AuthSidebar';
 import PasswordInput from '/src/shared/components/form/PasswordInput';
 import FormField from '/src/shared/components/form/FormField';
-import Button from '/src/shared/components/form/Button';
+import Button from '/src/shared/components/Button/Button';
 import { useLoginForm } from '../../hooks/useLoginForm';
 
 function LoginForm() {

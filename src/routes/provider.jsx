@@ -36,7 +36,9 @@ const routes = [
     }
 ]
 
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, {
+    basename: '/termbi-rest'
+});
 
 export function AppRouterProvider() {
     return (

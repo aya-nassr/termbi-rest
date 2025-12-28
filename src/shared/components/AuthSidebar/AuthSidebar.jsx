@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Image } from 'react-bootstrap';
-import TermbiLogo from '/src/assets/img/group.svg';
+import TermbiLogo from '/src/assets/img/Group.svg';
+import SignupIllustration from '/src/assets/img/signup.svg';
 
 const AuthSidebar = () => (
   <Col lg={6} md={12} className=' right-panel-white d-flex flex-column justify-content-center align-items-center'>
@@ -15,7 +16,7 @@ const AuthSidebar = () => (
           
           <div className='illustration-container'>
             <Image 
-              src="src/assets/img/signup.svg" 
+              src={SignupIllustration} 
               className="img-fluid" 
               alt="Restaurant illustration"
             />

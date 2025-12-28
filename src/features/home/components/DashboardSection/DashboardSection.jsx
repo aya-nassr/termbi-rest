@@ -1,4 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import GroupIcon from '/src/assets/img/Group.svg';
+import Dashbourd from '/src/assets/img/dash.jpg';
 import './style.css';
 
 function DashboardSection() {
@@ -8,7 +10,7 @@ function DashboardSection() {
         <Col>
           <h2 className="text-center fw-bold">
             <img
-              src="/src/assets/img/group.svg"
+              src={GroupIcon}
               alt="Group of companies icon"
               className="group-termbi me-2"
             />
@@ -34,7 +36,7 @@ function DashboardSection() {
 
         <Col lg={7} md={6} xs={12} className="text-center mb-4 mb-lg-0">
           <img
-            src="/src/assets/img/dash.jpg"
+            src={Dashbourd}
             alt="Dashboard screenshot"
             className="img-fluid shadow-lg rounded dashboard-img"
           />

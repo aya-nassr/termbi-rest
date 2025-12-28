@@ -4,7 +4,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import PasswordInput from '/src/shared/components/form/PasswordInput';
 import FormField from '/src/shared/components/form/FormField';
-import Button from '/src/shared/components/form/Button';
+import Button from '/src/shared/components/Button/Button';
 
 // 1. استقبال props الجديدة: register, errors, onSubmitHandler
 const Step3_SetPassword = ({ register, errors, onSubmitHandler }) => {
