@@ -1,5 +1,4 @@
 import ProductList from '../../../products/components/ProductList/ProductsList';
-import './style.css';
 
 function MenuSection() {
   return (

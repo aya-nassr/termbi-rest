@@ -8,6 +8,7 @@ import { useFetchCategories } from '../../hooks/useFetchCategories';
 import { useProductsState } from '../../store';
 import { useCartState } from '../../../Order/Cart/store';
 import toast from 'react-hot-toast';
+import Pagination from 'react-bootstrap/Pagination';
 
 function ProductList({ title = "Products", description = "Explore our delicious menu items!", showDownload = false }) {
     const [activeCategory, setActiveCategory] = useState('All');
@@ -130,8 +131,7 @@ function ProductList({ title = "Products", description = "Explore our delicious 
                             ))}
                         </Nav>
                     </div>
-                    
-                    {/* أزرار التحكم بالترتيب والعرض */}
+               
                     <div className="d-flex justify-content-center align-items-center mb-4 gap-2 flex-wrap">
                         <Button 
                             variant={viewMode === 'card' ? 'danger' : 'outline-secondary'}
@@ -176,7 +176,6 @@ function ProductList({ title = "Products", description = "Explore our delicious 
                         )}
                     </div>
 
-                    {/* عرض المنتجات */}
                     {menuItems && menuItems.length > 0 ? (
                         viewMode === 'card' ? (
                             <Row className='py-4'>
@@ -204,7 +203,25 @@ function ProductList({ title = "Products", description = "Explore our delicious 
                                         </div>
                                     </div>
                                 ))}
+                                <Pagination>
+      <Pagination.First />
+      <Pagination.Prev />
+      <Pagination.Item>{1}</Pagination.Item>
+      <Pagination.Ellipsis />
+
+      <Pagination.Item>{10}</Pagination.Item>
+      <Pagination.Item>{11}</Pagination.Item>
+      <Pagination.Item active>{12}</Pagination.Item>
+      <Pagination.Item>{13}</Pagination.Item>
+      <Pagination.Item disabled>{14}</Pagination.Item>
+
+      <Pagination.Ellipsis />
+      <Pagination.Item>{20}</Pagination.Item>
+      <Pagination.Next />
+      <Pagination.Last />
+    </Pagination>
                             </div>
+
                         )
                     ) : (
                         <div className="text-center py-5">
