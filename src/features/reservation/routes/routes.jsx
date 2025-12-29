@@ -1,6 +1,6 @@
-import { DefaultLayout } from "../../shared/layout/default-layout";
-import { appRoutes } from "../../routes";
-import { ReservePage } from "./pages";
+import { DefaultLayout } from "../../../shared/layout/default-layout";
+import { appRoutes } from "../../../routes";
+import { ReservePage } from "../pages";
 
 export const reservationRoutes = [
     {

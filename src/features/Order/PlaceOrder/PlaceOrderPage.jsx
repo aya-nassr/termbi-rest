@@ -1,10 +1,11 @@
-// src/features/Order/pages/PlaceOrderPage.jsx
+
 import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useCartState } from '../Cart/store';
+import { useCartState } from '../Cart/store/state';
 import OrderStepper from '../../../shared/components/CheckoutSteps/CheckoutSteps';
 import useCheckoutStore from '../Checkout/store';
+import Button from '../../../shared/components/Button/Button';
 
 function PlaceOrderPage() {
   const navigate = useNavigate();
@@ -19,16 +20,12 @@ function PlaceOrderPage() {
   };
 
   const handleConfirm = () => {
-    // 1. هنا ممكن تبعتي الطلب للباك اند (API Call)
-    // 2. بعد النجاح، بنفضي السلة
     clearCart();
-    // 3. بنحول المستخدم لصفحة النجاح
     navigate('/order-success');
   };
 
   return (
     <Container className="py-4">
-      {/* تغيير الـ Step ليكون place-order ليظهر في الشريط العلوي */}
       <OrderStepper currentStep={3} />
 
       <div className="text-center mb-4">
@@ -37,7 +34,6 @@ function PlaceOrderPage() {
 
       <Row className='justify-content-center'>
         <Col lg={5} >
-          {/* ملخص بيانات العميل (كما في الصورة) */}
           <Card className="border-0 shadow-sm mb-4">
             <Card.Body>
               <h5 className="text-danger mb-4">Order Summary</h5>
@@ -47,11 +43,9 @@ function PlaceOrderPage() {
                 <span >{orderInfo.orderCode}</span>
               </div>
               
-              {/* يمكنك استخدام CartSummary هنا للحصول على السعر الإجمالي أو حسابه يدوياً */}
               <div className="d-flex justify-content-between mb-3 border-bottom pb-2">
                 <span >Total Price</span>
                 <span className="fw-bold text-danger">
-                    {/* استدعاء دالة حساب السعر من الستور إذا كانت متاحة أو حسابها هنا */}
                     {items.reduce((acc, item) => acc + (item.price * item.cartQuantity), 0)}$
                 </span>
               </div>
@@ -75,7 +69,7 @@ function PlaceOrderPage() {
 
           <div className='text-center py-4'>
         <Button
-          className='subscribe-btn w-50 '
+          className='w-50'
           onClick={handleConfirm}
         >
           Confirm

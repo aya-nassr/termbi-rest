@@ -2,7 +2,7 @@
 
 export const userStorage = {
     save: (data) => {
-        // data هنا ستكون الكائن الذي يحتوي على الـ customer والـ access_token
+      
         localStorage.setItem('user_data', JSON.stringify(data));
     },
     get: () => {

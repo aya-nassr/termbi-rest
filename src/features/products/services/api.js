@@ -11,7 +11,7 @@ class ProductsServices {اً
         restaurant_admin_id: 8,
         sort_term: "asc",
         sort_by: sort,
-        category_id: category_id, // إذا كان null لن يؤثر على الطلب غالباً
+        category_id: category_id, 
       },
     });
 

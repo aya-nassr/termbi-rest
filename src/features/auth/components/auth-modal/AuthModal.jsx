@@ -19,7 +19,7 @@ function AuthModal({ show, onHide, initialMode = 'login' }) {
       style={{ borderRadius: '12px' }}
     >
       <Modal.Header closeButton className="border-0 pb-2">
-        <Modal.Title className="w-100 text-center" style={{ fontSize: '20px', fontWeight: '600', color: '#333' }}>
+        <Modal.Title className="w-100 text-center" >
           {mode === 'login' ? 'Log in' : 'Create an Account'}
         </Modal.Title>
       </Modal.Header>

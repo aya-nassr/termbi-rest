@@ -10,7 +10,7 @@ import Badge from 'react-bootstrap/Badge';
 import { useNavigate, Link } from 'react-router-dom';
 import { Cart } from 'react-bootstrap-icons';
 import { useAuth } from '/src/features/auth/context/AuthContext';
-import { useCartState } from '/src/features/Order/Cart/store';
+import { useCartState } from '/src/features/Order/Cart/store/state';
 import AuthButtons from '/src/shared/components/AuthButtons';
 
 import logo from '/src/assets/img/logo.png';
@@ -61,7 +61,7 @@ function AppNav() {
                                     className="border-start-0 bg-white"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    style={{boxShadow: 'none'}}
+                                    
                                 />
                             </InputGroup>
                         </Form>
@@ -102,14 +102,14 @@ function AppNav() {
                                 id="nav-dropdown-dark-example"
                                 title={DropdownImage}
                                 menuVariant="dark"
+                                
                             >
-                                {/* ... خيارات Dropdown ... */}
                             </NavDropdown>
                             
                             {isLoggedIn ? (
                                 <NavDropdown
                                     id="user-dropdown"
-                                    title={<i className="fas fa-user-circle" style={{fontSize: '24px'}}></i>}
+                                    title={<i className="fas fa-user-circle fs-4" ></i>}
                                     menuVariant="dark"
                                     align="end"
                                 >

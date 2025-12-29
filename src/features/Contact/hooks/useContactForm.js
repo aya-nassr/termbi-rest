@@ -15,8 +15,7 @@ export const useContactForm = () => {
 
   const onSubmit = (data) => {
     console.log('Contact form data:', data);
-    // هنا يمكن إرسال البيانات للـ API
-    reset(); // إعادة تعيين النموذج بعد الإرسال
+    reset();
   };
 
   return {

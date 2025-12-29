@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { Dash, Plus, Trash } from 'react-bootstrap-icons';
-import { useCartState } from '../../store';
+import { useCartState } from '../../store/state';
 import './style.css'
 
 function CartItem({ item }) {

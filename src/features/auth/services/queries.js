@@ -7,9 +7,9 @@ export function useGetMeQuery() {
         queryKey: ['auth-profile'],
         queryFn: () => {
             const userData = userStorage.get();
-            // نعيد الـ customer المحفوظ محلياً
+           
             return userData?.customer || null; 
         },
-        staleTime: Infinity, // البيانات لا تنتهي صلاحيتها لأنها محلية
+        staleTime: Infinity, 
     });
 }

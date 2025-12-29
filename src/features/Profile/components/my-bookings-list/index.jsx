@@ -65,7 +65,6 @@ export function MyBookingsList() {
         </Table>
       </div>
 
-      {/* 6. أزرار الترقيم التفاعلية */}
       {totalPages > 1 && (
         <div className="d-flex justify-content-center mt-5">
           <div className="custom-pagination">

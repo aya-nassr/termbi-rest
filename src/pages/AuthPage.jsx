@@ -7,10 +7,8 @@ function AuthPage() {
   const handleSubmit = (data, mode) => {
     if (mode === 'login') {
       console.log('Login data:', data);
-      // هنا يمكنك إضافة منطق تسجيل الدخول
     } else {
       console.log('Signup data:', data);
-      // هنا يمكنك إضافة منطق التسجيل الجديد
     }
   };
 

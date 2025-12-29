@@ -1,7 +1,6 @@
 import { lazy } from 'react';
 import { DefaultLayout } from '../../../shared/layout/default-layout';
 
-// Lazy Load للصفحات
 const CartPage = lazy(() => import('../Cart/pages/CartPage'));
 const CheckoutPage = lazy(() => import('../Checkout/pages/CheckoutPage'));
 const PlaceOrderPage = lazy(() => import('../PlaceOrder/PlaceOrderPage'));

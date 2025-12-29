@@ -7,7 +7,7 @@ import { contactRoutes } from '../features/Contact/routes'
 import { productRoutes } from '../features/products/routes'
 import { orderRoutes } from '../features/Order/routes'
 import { profileRoutes } from '../features/Profile/routes'
-import { reservationRoutes } from '../features/reservation/routes.jsx'
+import { reservationRoutes } from '../features/reservation/routes/routes.jsx'
 import { restaurantHomeRoutes } from '../features/ResturantHome/routes/'
 
 const routes = [

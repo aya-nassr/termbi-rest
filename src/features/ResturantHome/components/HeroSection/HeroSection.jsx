@@ -1,9 +1,15 @@
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 import { FaMapMarkerAlt, FaStar } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 import PastaImage from '/src/assets/img/pasta.jpg';
 
 function HeroSection() {
+  const navigate = useNavigate();
+
+  const handleReserveTable = () => {
+    navigate('/reserve');
+  };
   return (
     <Container className='py-5 bg'>
       <Row className="align-items-center flex-column-reverse flex-lg-row">
@@ -38,7 +44,7 @@ function HeroSection() {
           </div>
 
           <div className="d-flex justify-content-center justify-content-lg-start">
-            <Button variant="danger" size="lg" className="px-4 py-2">
+            <Button variant="danger" size="lg" className="px-4 py-2" onClick={handleReserveTable}>
               Reserve a table
             </Button>
           </div>

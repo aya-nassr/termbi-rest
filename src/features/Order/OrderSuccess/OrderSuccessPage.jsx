@@ -1,22 +1,22 @@
-// src/features/Order/pages/OrderSuccessPage.jsx
+
 import React, { useEffect } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import { Container} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { BsCheckLg } from "react-icons/bs"; 
 import OrderStepper from '../../../shared/components/CheckoutSteps/CheckoutSteps';
-import { useCartState } from '../Cart/store';
+import { useCartState } from '../Cart/store/state';
+import './style.css';
+import Button from '../../../shared/components/Button/Button';
 
 function OrderSuccessPage() {
    const navigate = useNavigate();
    const { clearCart } = useCartState();
    
-   // تصفير السلة عند الوصول لصفحة النجاح
    useEffect(() => {
      clearCart();
    }, [clearCart]);
    
   const handleConfirm = () => {
-    // الانتقال لصفحة المنتجات
     navigate('/products');
   };
   return (
@@ -25,13 +25,8 @@ function OrderSuccessPage() {
 
       <div className="mt-5">
         <div 
-          className="d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
-          style={{ 
-            width: '100px', 
-            height: '100px', 
-            backgroundColor: '#dc3545', 
-            boxShadow: '0 0 0 15px rgba(220, 53, 69, 0.1)' 
-          }}
+          className="sucess d-inline-flex align-items-center justify-content-center rounded-circle mb-4"
+          
         >
     
           <BsCheckLg color="white" size={50} />
@@ -43,7 +38,7 @@ function OrderSuccessPage() {
 
        <div className='text-center mb-5'>
                <Button
-                 className='subscribe-btn w-25'
+                 className=' w-25'
                  onClick={handleConfirm}
                >
                 Go Home

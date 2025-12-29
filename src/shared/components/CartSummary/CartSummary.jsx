@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { useLocation } from 'react-router';
-import { useCartState } from '../../../features/Order/Cart/store';
+import { useCartState } from '../../../features/Order/Cart/store/state';
 import { useNavigate } from 'react-router-dom';
 
 function CartSummary() {

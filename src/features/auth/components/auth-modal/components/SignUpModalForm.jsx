@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { Google, Facebook, EyeSlash, Eye } from 'react-bootstrap-icons';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,6 +7,7 @@ import { registerSchema } from './config';
 import { useSignUpMutation } from '../../../services/mutations';
 import { userStorage } from '../../../storage';
 import toast from 'react-hot-toast';
+import Button from '../../../../../shared/components/Button';
 
 function SignUpModalForm({ onSwitchToLogin, onClose }) {
   const {
@@ -34,14 +35,13 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
       
       const response = await signUpMutation.mutateAsync(customerData);
       
-      // حفظ بيانات المستخدم وتسجيل الدخول تلقائياً
       if (response?.data) {
         userStorage.save(response.data);
       }
       
       toast.success('Account created and logged in successfully!');
       onClose();
-      window.location.reload(); // إعادة تحميل الصفحة لتحديث حالة المصادقة
+      window.location.reload(); 
     } catch (error) {
       console.error('Registration error:', error);
       const errorMessage = error?.response?.data?.message || error?.message || 'An error occurred while creating account';
@@ -56,7 +56,7 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
           type="text" 
           placeholder='First Name'
           className="py-3"
-          style={{ fontSize: '14px', border: '1px solid #ddd' }}
+          
           isInvalid={!!errors.firstName}
           {...register('firstName')}
         />
@@ -72,7 +72,6 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
           type="text" 
           placeholder='Last Name'
           className="py-3"
-          style={{ fontSize: '14px', border: '1px solid #ddd' }}
           isInvalid={!!errors.lastName}
           {...register('lastName')}
         />
@@ -88,7 +87,6 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
           type="email" 
           placeholder='Email'
           className="py-3"
-          style={{ fontSize: '14px', border: '1px solid #ddd' }}
           isInvalid={!!errors.email}
           {...register('email')}
         />
@@ -104,7 +102,7 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
           type={showPassword ? 'text' : 'password'}
           placeholder='Password'
           className="py-3 pe-5"
-          style={{ fontSize: '14px', border: '1px solid #ddd' }}
+          
           isInvalid={!!errors.password}
           {...register('password')}
         />
@@ -116,7 +114,6 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
         <button
           type="button"
           className="btn position-absolute end-0 top-50 translate-middle-y me-3"
-          style={{ border: 'none', background: 'none', color: '#999' }}
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? <Eye size={16} /> : <EyeSlash size={16} />}
@@ -128,7 +125,6 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
           type={showConfirmPassword ? 'text' : 'password'}
           placeholder='Confirm Password'
           className="py-3 pe-5"
-          style={{ fontSize: '14px', border: '1px solid #ddd' }}
           isInvalid={!!errors.confirmPassword}
           {...register('confirmPassword')}
         />
@@ -140,7 +136,6 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
         <button
           type="button"
           className="btn position-absolute end-0 top-50 translate-middle-y me-3"
-          style={{ border: 'none', background: 'none', color: '#999' }}
           onClick={() => setShowConfirmPassword(!showConfirmPassword)}
         >
           {showConfirmPassword ? <Eye size={16} /> : <EyeSlash size={16} />}
@@ -149,26 +144,21 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
       
       <Button 
         type="submit" 
+        variant="primary"
+        size="lg"
         className="w-100 mb-3 py-3"
-        style={{ 
-          backgroundColor: '#e53e3e', 
-          border: 'none',
-          fontSize: '16px',
-          fontWeight: '500'
-        }}
         disabled={signUpMutation.isPending}
       >
         {signUpMutation.isPending ? 'Creating Account...' : 'Sign up'}
       </Button>
       
-      <div className="text-center mb-3" style={{ color: '#999', fontSize: '14px' }}>
+      <div className="text-center text-secondary mb-3" >
         OR
       </div>
       
       <Button 
         variant="outline-secondary"
         className="w-100 mb-3 py-3 d-flex align-items-center justify-content-center"
-        style={{ fontSize: '14px', fontWeight: '500' }}
       >
         <Google className="me-2" size={16} />
         Continue with Google
@@ -177,18 +167,17 @@ function SignUpModalForm({ onSwitchToLogin, onClose }) {
       <Button 
         variant="outline-secondary"
         className="w-100 mb-4 py-3 d-flex align-items-center justify-content-center"
-        style={{ fontSize: '14px', fontWeight: '500' }}
       >
         <Facebook className="me-2" size={16} />
         Continue with Facebook
       </Button>
       
-      <p className='text-center' style={{ fontSize: '14px', color: '#666' }}>
+      <p className='text-center text-secondary' >
         already have an account? 
         <button 
           type="button"
-          className='btn btn-link p-0 ms-1'
-          style={{ color: '#e53e3e', textDecoration: 'none', fontSize: '14px' }}
+          className='btn text-danger p-0 ms-1'
+         
           onClick={onSwitchToLogin}
         >
           Log in

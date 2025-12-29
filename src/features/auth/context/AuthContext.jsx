@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // تحميل بيانات المستخدم عند بدء التطبيق
   useEffect(() => {
     const userData = userStorage.get();
     if (userData?.customer) {

@@ -1,6 +1,7 @@
-import { Card, Row, Button, Col } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FormField from '../../../../../shared/components/form/FormField';
+import Button from '../../../../../shared/components/Button/Button';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import paymentConfig from './config';
@@ -91,7 +92,7 @@ function PaymentDetailes() {
       </Card>
       <div className='text-center py-5'>
         <Button
-          className='subscribe-btn w-50 fw-bold'
+          className='w-50'
           onClick={handleSubmit(onSubmit)}
           type="button"
         >

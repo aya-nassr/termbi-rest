@@ -19,20 +19,17 @@ function ChoosePayment() {
        
        <Form>
             <div className="d-flex flex-column px-2">
-              
-              {/* خيار PayPal */}
               <Form.Check 
                 type="radio"
                 id="paypal"
                 label="PayPal"
                 value="PayPal"
-                name="paymentMethodGroup" // الاسم الموحد ضروري ليعمل كـ Radio
+                name="paymentMethodGroup" 
                 className="mb-4 custom-radio"
                 checked={paymentMethod === 'PayPal'}
                 onChange={handlePaymentChange}
               />
 
-              {/* خيار Credit Card */}
               <Form.Check 
                 type="radio"
                 id="creditCard"
@@ -44,7 +41,6 @@ function ChoosePayment() {
                 onChange={handlePaymentChange}
               />
 
-              {/* خيار Google Pay */}
               <Form.Check 
                 type="radio"
                 id="googlePay"

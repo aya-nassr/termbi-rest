@@ -6,7 +6,7 @@ import ProductModal from '../ProductModal/ProductModal';
 import { useFetchProducts } from '../../hooks/useFetchProducts'; 
 import { useFetchCategories } from '../../hooks/useFetchCategories';
 import { useProductsState } from '../../store';
-import { useCartState } from '../../../Order/Cart/store';
+import { useCartState } from '../../../Order/Cart/store/state';
 import toast from 'react-hot-toast';
 import Pagination from 'react-bootstrap/Pagination';
 import './style.css';
